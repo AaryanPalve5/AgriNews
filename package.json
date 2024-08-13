@@ -4,7 +4,7 @@
   "description": "A news app fetching articles related to agriculture",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node/index.js",
     "build": "echo 'No build step defined'"
   },
   "dependencies": {
