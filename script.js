@@ -9,7 +9,7 @@ function reload() {
 
 async function fetchNews(query) {
     try {
-        const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+        const res = await fetch(`${url}${encodeURIComponent(query)}&apiKey=${API_KEY}`);
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
@@ -49,14 +49,14 @@ function fillDataInCard(cardClone, article) {
     const newsDesc = cardClone.querySelector("#news-desc");
 
     if (newsImg) newsImg.src = article.urlToImage;
-    if (newsTitle) newsTitle.innerHTML = article.title;
-    if (newsDesc) newsDesc.innerHTML = article.description;
+    if (newsTitle) newsTitle.textContent = article.title; // Use textContent instead of innerHTML for safety
+    if (newsDesc) newsDesc.textContent = article.description; // Use textContent instead of innerHTML
 
     const date = new Date(article.publishedAt).toLocaleString("en-US", {
         timeZone: "Asia/Jakarta",
     });
 
-    if (newsSource) newsSource.innerHTML = `${article.source.name} · ${date}`;
+    if (newsSource) newsSource.textContent = `${article.source.name} · ${date}`; // Use textContent instead of innerHTML
 
     cardClone.firstElementChild.addEventListener("click", () => {
         window.open(article.url, "_blank");
