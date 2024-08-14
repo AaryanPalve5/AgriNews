@@ -1,11 +1,17 @@
 from flask import Flask, render_template
 import requests
+from dotenv import load_dotenv
+import os
+
 
 app = Flask(__name__)
 
+
+load_dotenv() 
+
 @app.route('/')
 def home():
-    api_key = '18a87f17ef6645f69c5f4c5202f8fadb'
+    api_key = os.getenv('NEWS_API_KEY')  
     url = 'https://newsapi.org/v2/everything'
     query = 'Agriculture'
 
