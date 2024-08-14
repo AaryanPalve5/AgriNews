@@ -7,14 +7,15 @@ app = Flask(__name__)
 def home():
     api_key = '18a87f17ef6645f69c5f4c5202f8fadb'
     url = 'https://newsapi.org/v2/everything'
-    query = 'farmer'
+    query = 'Agriculture'
 
     params = {
         'q': query,
         'apiKey': api_key,
         'language': 'en',
-        'sortBy': 'publishedAt',
-        'pageSize': 5
+        'sortBy': 'relevancy',
+
+        'pageSize': 10
     }
 
     response = requests.get(url, params=params)
